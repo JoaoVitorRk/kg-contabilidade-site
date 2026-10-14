@@ -39,9 +39,11 @@ h2 { font-size: clamp(2.1rem, 4.8vw, 3.7rem); font-variation-settings: "SOFT" 50
 h3 { font-size: clamp(1.35rem, 2.4vw, 1.9rem); font-variation-settings: "SOFT" 40, "opsz" 72; }
 p { margin: 0; }
 :focus-visible { outline: 2px solid var(--amarelo); outline-offset: 3px; border-radius: 2px; }
+.claro :focus-visible, .rodape :focus-visible, .servicos :focus-visible { outline-color: var(--navy); }
+section[id] { scroll-margin-top: 5rem; }
 
 /* palavra marcada: itálico com marca-texto amarelo (os posts dela usam isso) */
-.marca { font-style: italic; font-weight: 300; position: relative; white-space: nowrap; }
+.marca { font-style: italic; font-weight: 300; position: relative; white-space: nowrap; isolation: isolate; }
 .marca::before {
   content: ""; position: absolute; inset: 58% -.08em -.02em -.1em; z-index: -1;
   background: var(--amarelo); border-radius: 2px; transform: skewX(-6deg) scaleX(0); transform-origin: left;
@@ -142,7 +144,7 @@ p { margin: 0; }
 .selo { width: clamp(6.5rem, 10vw, 8.5rem); aspect-ratio: 1; position: relative; display: grid; place-items: center; flex: none; }
 .selo svg { position: absolute; inset: 0; animation: gira 26s linear infinite; }
 .selo:hover svg { animation-duration: 9s; }
-.selo text { font: 500 .62rem var(--mono); letter-spacing: .3em; text-transform: uppercase; fill: currentColor; }
+.selo text { font: 500 .66rem var(--mono); letter-spacing: .34em; text-transform: uppercase; fill: currentColor; }
 .selo img { width: 36%; }
 @keyframes gira { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .selo svg { animation: none; } }
@@ -328,12 +330,14 @@ section.bloco { padding-block: clamp(4rem, 9vw, 8rem); position: relative; }
 }
 
 /* para quem */
-.perfis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 3rem; border-top: 1px solid var(--fio-claro); }
+.perfis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 5rem; border-top: 1px solid var(--fio-claro); }
+.perfil:nth-child(even) { transform: translateY(2.2rem); }
+.perfil:nth-child(odd) { padding-right: 1rem; }
 .perfil { padding: 1.6rem 0; border-bottom: 1px solid var(--fio-claro); display: grid; gap: .45rem; position: relative; }
 .perfil::before { content: ""; position: absolute; left: 0; top: -1px; width: 2.2rem; height: 1px; background: var(--amarelo); }
 .perfil h3 { font-size: 1.35rem; }
 .perfil p { color: rgba(245, 239, 231, .72); font-size: .96rem; }
-@media (max-width: 860px) { .perfis { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .perfis { grid-template-columns: 1fr; } .perfil:nth-child(even) { transform: none; } }
 
 /* bloco irpf da home: foto em moldura com a palavra vazada sobreposta */
 .irpf .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); }
