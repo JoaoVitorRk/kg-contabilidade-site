@@ -435,3 +435,17 @@ section.bloco { padding-block: clamp(4rem, 9vw, 8rem); position: relative; }
 
 /* ouro velho no escuro: um pouco mais de presença nos traços finos */
 .escuro .irpf-num, .irpf .irpf-foto .palavra { -webkit-text-stroke-width: 1.4px; }
+
+/* abertura no celular: foto num bloco no topo (a planilha aparece inteira) e texto sobre o marinho liso */
+@media (max-width: 760px) {
+  .hero { display: block; min-height: 0; background: var(--navy); }
+  .hero-foto { position: relative; inset: auto; height: calc(4.6rem + 78vw); z-index: 0; overflow: hidden; }
+  .hero-foto img { object-position: 50% 45%; }
+  .hero-veu { inset: 0 0 auto 0; height: calc(4.6rem + 78vw); background: linear-gradient(180deg, rgba(24, 38, 64, .78) 0%, rgba(24, 38, 64, .12) 26%, rgba(24, 38, 64, .08) 62%, var(--navy) 100%); }
+  .hero .wrap { padding-top: .6rem; padding-bottom: 2.6rem; }
+  .hero-pag .hero-foto img { object-position: 50% 50%; }
+}
+@media (max-width: 760px) {
+  .hero-veu { z-index: 1; }
+  .hero .wrap { z-index: 2; }
+}
