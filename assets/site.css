@@ -123,8 +123,8 @@ section[id] { scroll-margin-top: 5rem; }
 /* abertura */
 .hero { position: relative; min-height: 100svh; display: grid; align-items: end; overflow: hidden; isolation: isolate; color: var(--marfim); }
 .hero-foto { position: absolute; inset: 0; z-index: -2; }
-.hero-foto img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; transform: scale(1.06); transform-origin: 70% 40%; animation: kb 22s ease-out both; }
-@keyframes kb { from { transform: scale(1.14); } to { transform: scale(1.04); } }
+.hero-foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; transform: scale(1.02); transform-origin: 75% 55%; animation: kb 24s ease-out both; }
+@keyframes kb { from { transform: scale(1.06); } to { transform: scale(1); } }
 @media (prefers-reduced-motion: reduce) { .hero-foto img { animation: none; } }
 .hero-veu { position: absolute; inset: 0; z-index: -1;
   background: linear-gradient(90deg, rgba(24, 38, 64, .94) 0%, rgba(24, 38, 64, .78) 38%, rgba(24, 38, 64, .28) 70%, rgba(24, 38, 64, .45) 100%),
@@ -444,4 +444,43 @@ section.bloco { padding-block: clamp(4rem, 9vw, 8rem); position: relative; }
   .hero .wrap { padding-top: 6.4rem; padding-bottom: 3.2rem; gap: 1.1rem; }
   .hero .rotulo { letter-spacing: .12em; }
   .hero .rotulo::before { display: none; }
+}
+
+
+/* celular com a conversa (quem somos): HTML em vez de foto, para o texto ficar nítido */
+.fone { position: absolute; left: -6%; bottom: 5%; width: 54%; aspect-ratio: 9 / 18.5; margin: 0; z-index: 3;
+  background: #0E1626; border-radius: 2.1rem; padding: .55rem; box-shadow: 0 40px 70px -30px rgba(10, 18, 32, .65), inset 0 0 0 1px rgba(255, 255, 255, .08); }
+.fone::before { content: ""; position: absolute; top: .9rem; left: 50%; width: 28%; height: .9rem; transform: translateX(-50%); background: #0E1626; border-radius: 999px; z-index: 2; }
+.fone-tela { position: relative; height: 100%; border-radius: 1.65rem; overflow: hidden; display: grid; grid-template-rows: auto auto 1fr auto;
+  background: #EFE7DD; background-image: radial-gradient(rgba(33, 53, 85, .06) 1px, transparent 1px); background-size: 14px 14px; font-family: var(--texto); color: #1B2333; }
+.fone-status { display: flex; justify-content: space-between; align-items: center; padding: .7rem 1.1rem .25rem; font: 600 .62rem/1 var(--texto); background: var(--navy-2); color: var(--marfim); }
+.fone-status i { width: 1.1rem; height: .45rem; border: 1px solid currentColor; border-radius: 2px; position: relative; }
+.fone-status i::after { content: ""; position: absolute; inset: 1px 30% 1px 1px; background: currentColor; }
+.fone-topo { display: flex; align-items: center; gap: .55rem; padding: .45rem .8rem .6rem; background: var(--navy-2); color: var(--marfim); }
+.fone-avatar { width: 1.9rem; height: 1.9rem; border-radius: 50%; display: grid; place-items: center; background: var(--marfim); color: var(--navy); font: 700 .55rem/1 var(--texto); letter-spacing: .02em; flex: none; }
+.fone-topo strong { display: block; font: 600 .74rem/1.2 var(--texto); }
+.fone-topo small { display: block; font: 400 .6rem/1.2 var(--texto); opacity: .75; }
+.fone-conversa { list-style: none; margin: 0; padding: .8rem .6rem; display: flex; flex-direction: column; gap: .45rem; justify-content: flex-end; }
+.msg { max-width: 84%; padding: .45rem .6rem .35rem; border-radius: .7rem; font-size: .74rem; line-height: 1.35; box-shadow: 0 1px 1px rgba(0, 0, 0, .08);
+  opacity: 0; transform: translateY(8px) scale(.98); transition: opacity .5s ease, transform .5s cubic-bezier(.2, .7, .2, 1); transition-delay: calc(.5s + var(--i) * .9s); }
+.msg span { display: block; }
+.msg time { display: block; text-align: right; font-size: .56rem; color: rgba(27, 35, 51, .55); margin-top: .15rem; }
+.msg time b { color: #4A90C9; font-weight: 600; margin-left: .2rem; letter-spacing: -.12em; }
+.msg.sai { align-self: flex-end; background: #DCF3D2; border-bottom-right-radius: .2rem; }
+.msg.entra { align-self: flex-start; background: #FFFFFF; border-bottom-left-radius: .2rem; }
+.digitando { align-self: flex-start; display: flex; gap: .2rem; padding: .5rem .6rem; background: #fff; border-radius: .7rem; border-bottom-left-radius: .2rem; opacity: 0; transition: opacity .4s ease calc(.5s + var(--i) * .9s); }
+.digitando i { width: .3rem; height: .3rem; border-radius: 50%; background: rgba(27, 35, 51, .4); animation: digita 1.2s infinite ease-in-out; }
+.digitando i:nth-child(2) { animation-delay: .15s; } .digitando i:nth-child(3) { animation-delay: .3s; }
+@keyframes digita { 0%, 60%, 100% { transform: translateY(0); opacity: .4; } 30% { transform: translateY(-3px); opacity: 1; } }
+.fone-campo { display: flex; align-items: center; gap: .4rem; padding: .45rem .55rem .7rem; }
+.fone-campo span { flex: 1; background: #fff; border-radius: 999px; padding: .4rem .7rem; font-size: .66rem; color: rgba(27, 35, 51, .45); }
+.fone-campo i { width: 1.7rem; height: 1.7rem; border-radius: 50%; background: var(--navy-2); flex: none; position: relative; }
+.fone-campo i::after { content: ""; position: absolute; left: 50%; top: 50%; width: .45rem; height: .45rem; border-top: 2px solid var(--marfim); border-right: 2px solid var(--marfim); transform: translate(-65%, -50%) rotate(45deg); }
+.in .msg, .no-js .msg { opacity: 1; transform: none; }
+.in .digitando, .no-js .digitando { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .msg { transition: none; opacity: 1; transform: none; } .digitando { transition: none; opacity: 1; } .digitando i { animation: none; } }
+@media (max-width: 860px) {
+  .fone { left: 0; width: 58%; bottom: 4%; border-radius: 1.8rem; padding: .45rem; }
+  .fone-tela { border-radius: 1.45rem; }
+  .msg { font-size: .72rem; }
 }
