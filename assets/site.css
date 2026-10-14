@@ -144,7 +144,7 @@ section[id] { scroll-margin-top: 5rem; }
 .selo { width: clamp(6.5rem, 10vw, 8.5rem); aspect-ratio: 1; position: relative; display: grid; place-items: center; flex: none; }
 .selo svg { position: absolute; inset: 0; animation: gira 26s linear infinite; }
 .selo:hover svg { animation-duration: 9s; }
-.selo text { font: 500 .66rem var(--mono); letter-spacing: .34em; text-transform: uppercase; fill: currentColor; }
+.selo text { font: 500 .58rem var(--mono); letter-spacing: .26em; text-transform: uppercase; fill: currentColor; }
 .selo img { width: 36%; }
 @keyframes gira { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .selo svg { animation: none; } }
