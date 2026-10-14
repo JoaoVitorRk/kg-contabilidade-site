@@ -58,6 +58,46 @@
     move();
   }
 
+
+  // menu do celular
+  var mb = document.querySelector('.menu-botao'), mc = document.getElementById('menu-cel');
+  if (mb && mc) {
+    var fechaMenu = function () { mc.hidden = true; mb.setAttribute('aria-expanded', 'false'); document.body.classList.remove('menu-aberto'); };
+    mb.addEventListener('click', function () {
+      var abrir = mc.hidden;
+      mc.hidden = !abrir;
+      mb.setAttribute('aria-expanded', String(abrir));
+      document.body.classList.toggle('menu-aberto', abrir);
+      topo.classList.add('fixo');
+    });
+    mc.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', fechaMenu); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fechaMenu(); });
+  }
+
+  // barra do WhatsApp no celular: aparece depois dos botões da abertura e some no fechamento
+  var barra = document.querySelector('.barra-cel');
+  if (barra) {
+    var heroBtns = document.querySelector('.hero-acoes');
+    var fim = document.querySelector('#contato');
+    var noHero = !!heroBtns, noFim = false;
+    var atualiza = function () {
+      var v = !noHero && !noFim;
+      barra.classList.toggle('visivel', v);
+      barra.setAttribute('aria-hidden', v ? 'false' : 'true');
+      var a = barra.querySelector('a'); if (a) a.tabIndex = v ? 0 : -1;
+    };
+    var ob = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (en.target === heroBtns) noHero = en.isIntersecting || en.boundingClientRect.top > 0;
+        if (en.target === fim) noFim = en.isIntersecting;
+      });
+      atualiza();
+    });
+    if (heroBtns) ob.observe(heroBtns);
+    if (fim) ob.observe(fim);
+    atualiza();
+  }
+
   // só uma dúvida aberta por vez
   document.querySelectorAll('.faq details').forEach(function (d) {
     d.addEventListener('toggle', function () {
